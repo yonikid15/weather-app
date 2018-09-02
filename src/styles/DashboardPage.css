@@ -1,0 +1,10 @@
+.layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-items: center;
+}
+
+.sideBar {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}

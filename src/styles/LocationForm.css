@@ -1,0 +1,10 @@
+.form {
+
+  &__input {
+    display: block;
+  }
+
+  &__btn {
+    
+  }
+}
