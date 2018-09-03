@@ -1,3 +1,20 @@
 .weather {
   align-self: center;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.35), 
+      rgba(0, 0, 0, 0.35)
+    ),
+    url('../../public/images/building-architecture-historical-tower.jpg') no-repeat center/cover;
+  height: 80%;
+  width: 90%;
+  margin: 0px 20px;
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: repeat( auto-fill, 100px );
+  grid-template-rows: repeat( auto-fill, 100px );
+  justify-content: center;
+  align-content: center;
 }
+

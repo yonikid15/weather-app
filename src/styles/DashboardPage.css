@@ -1,10 +1,12 @@
 .layout {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 4fr;
   justify-items: center;
 }
 
 .sideBar {
   display: grid;
   grid-template-rows: auto 1fr;
+  width: 100%;
+  border-right: 1px solid #607D8B;
 }

@@ -1,10 +1,29 @@
 .form {
 
+  border-bottom: 1px solid #607D8B;
+  padding: 10px;
+
   &__input {
     display: block;
+    border: none;
+    width: 100%;
+    background-color: rgba(96, 125, 139, 0.141);
+    padding: 10px;
+    margin: 10px 0;
+    color: white;
+    border-radius: 2px;
+  }
+
+  &__input::placeholder {
+    color: white;
   }
 
   &__btn {
-    
+    border: none;
+    background-color: #1c465a;
+    color: white;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    border-radius: 2px;
   }
 }

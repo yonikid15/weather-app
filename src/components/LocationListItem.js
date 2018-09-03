@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startRemoveLocation, startActivateLocation } from '../actions/locations';
+import styles from '../styles/LocationListItem.css';
 
 export class LocationsListItem extends React.Component {
 
@@ -26,15 +27,24 @@ export class LocationsListItem extends React.Component {
 
   }
 
+  /* 
+    Activate Location when user clicks on Component.
+  */
+  activate = () => {
+    this.props.startActivateLocation( this.props.id );
+  }
+
   render() {
     const { city, country } = this.props;
     return (
-      <div>
-        {/* img here */}
-        <h4>{ city }</h4>
-        <h5>{ country }</h5>
-        <button onClick={ this.remove }>Remove</button>
-      </div>
+      <li onClick={ this.activate } className={ styles.listItem }>
+        <img className={ styles.listItem__img } src="https://via.placeholder.com/60x60"/>
+        <div className={ styles.listItem__titles }>
+          <h4 className={ styles.listItem__city }>{ city }</h4>
+          <h5 className={ styles.listItem__country }>{ country }</h5>
+        </div>
+        <button className={ styles.listItem__btn } onClick={ this.remove }><i className={ 'fas fa-times-circle' }></i></button>
+      </li>
     );
   };
 };

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className={ styles.footer }>
       {/* Logo */}
       <div>
-        logo
+        yonikid
       </div>
       {/* Link to GitHub */}
       <div>

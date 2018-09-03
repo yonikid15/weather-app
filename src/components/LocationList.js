@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LocationListItem from './LocationListItem';
+import styles from '../styles/LocationList.css';
 
 export const LocationList = ( props ) =>  {
     return (
-      <div>
+      <ul className={ styles.listLayout}>
         {
           props.locations.length === 0 ? (
-            <div>
+            <li className={ styles.noLocations }>
               <span>No Locations.</span>
-            </div>
+            </li>
           ) : (
             props.locations.map( ( location, index ) => {
               return <LocationListItem 
@@ -22,7 +23,7 @@ export const LocationList = ( props ) =>  {
             })
           )
         }
-      </div>
+      </ul>
     );
 };
 
