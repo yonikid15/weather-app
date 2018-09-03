@@ -68,3 +68,47 @@ export const startActivateLocation = ( id ) => {
     dispatch( activateLocation( id ) );
   }
 };
+
+// REFRESH_LOCATION
+
+export const refreshLocation = ( id, location ) => ({
+  type: 'REFRESH_LOCATION',
+  id,
+  location
+});
+
+export const startRefreshLocation = ( id, location = {} ) => {
+  const { 
+    city, 
+    country 
+  } = location;
+
+  return ( dispatch ) => {
+      const apiCall = fetch(
+          `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.OPEN_MAP_WEATHER_API_KEY}`
+      ).then( res => {
+
+        // Status: 200 OK
+        const apiData = res.json();
+
+        // Get data from Response
+        return apiData.then( data => {
+          console.log( data );
+          const locationData = {
+              id: id,
+              temperature: data.main.temp,
+              city: data.name,
+              country: data.sys.country,
+              humidity: data.main.humidity,
+              condition: data.weather[0].description,
+              active: true
+          };
+
+          dispatch( refreshLocation( id, locationData ) );  
+        });
+
+      }).catch( err => {
+        console.log( err );
+      });
+  };
+};

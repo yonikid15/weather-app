@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startRemoveLocation, startActivateLocation } from '../actions/locations';
+import { startRemoveLocation, startActivateLocation, startRefreshLocation } from '../actions/locations';
 import styles from '../styles/LocationListItem.css';
 
 export class LocationsListItem extends React.Component {
@@ -34,6 +34,18 @@ export class LocationsListItem extends React.Component {
     this.props.startActivateLocation( this.props.id );
   }
 
+  /*
+    Refresh data on location
+  */
+  refresh = () => {
+    const location = { 
+      city: this.props.city,
+      country: this.props.country
+    };
+
+    this.props.startRefreshLocation( this.props.id, location );
+  }
+
   render() {
     const { city, country } = this.props;
     return (
@@ -43,7 +55,10 @@ export class LocationsListItem extends React.Component {
           <h4 className={ styles.listItem__city }>{ city }</h4>
           <h5 className={ styles.listItem__country }>{ country }</h5>
         </div>
-        <button className={ styles.listItem__btn } onClick={ this.remove }><i className={ 'fas fa-times-circle' }></i></button>
+        <div className={ styles.listItem__buttons }>
+          <button className={ styles.listItem__btn } onClick={ this.remove }><i className={ 'fas fa-times-circle' }></i></button>
+          <button className={ styles.listItem__btn } onClick={ this.refresh }><i className={ 'fas fa-redo' }></i></button>
+        </div>
       </li>
     );
   };
@@ -51,7 +66,8 @@ export class LocationsListItem extends React.Component {
 
 const mapDispatchToProps = ( dispatch ) => ({
   startRemoveLocation: ( id ) => dispatch( startRemoveLocation( id ) ),
-  startActivateLocation: ( id ) => dispatch( startActivateLocation( id ) )
+  startActivateLocation: ( id ) => dispatch( startActivateLocation( id ) ),
+  startRefreshLocation: ( id, location ) => dispatch( startRefreshLocation( id, location ) )
 });
 
 export default connect( undefined, mapDispatchToProps )( LocationsListItem );

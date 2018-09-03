@@ -1,0 +1,18 @@
+.downBtn {
+  grid-row: 3;
+  background-color: #121519;
+  border: 1px solid #607D8B;
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  left: 30%;
+  border-radius: 50%;
+  top: 100%;
+  transform: translateY(-6vw);
+  padding-bottom: 44%;
+
+  &__icon {
+    color: #607D8B;
+    font-size: 40px;
+  }
+}

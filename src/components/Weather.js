@@ -1,42 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import WeatherItem from './WeatherItem';
 import Place from './Place';
 import Temperature from './Temperature';
 import Humidity from './Humidity';
 import Condition from './Condition';
 import styles from '../styles/Weather.css';
+import wIcons from '../styles/weather-icons.min.css';
 
 export const Weather = ( { locations } ) => {
 
     const active = locations.find( location => location.active === true );
 
     return (
- 
+        locations.length === 0 ?
+            (
+                <p className={ styles.noLocation }>
+                    <i className={`${ styles.icon } ${ wIcons.wi } ${ wIcons[ 'wi-day-thunderstorm' ] }`}></i>
+                    Weather Finder
+                </p> 
+            )
             
-                active ?
+            :
 
-                (
-                    <div className={ styles.weather }>
-                        <Place 
-                            city={active.city} 
-                            country={active.country} 
-                        />
-                        <Temperature 
-                            temperature={active.temperature}
-                        />
-                        <Humidity 
-                            humidity={active.humidity}
-                        />
-                        <Condition 
-                            condition={active.condition}
-                        />
-                    </div>
-                ) :
-
-                <p className={ styles.weather }>Add a Location.</p>
-            
-   
-        
+            (
+                <div className={ styles.weatherLayout }>
+                    { locations.map( location => {
+                        return <WeatherItem>
+                                    <Place 
+                                        city={location.city} 
+                                        country={location.country} 
+                                    />
+                                    <Temperature 
+                                        temperature={location.temperature}
+                                    />
+                                    <Humidity 
+                                        humidity={location.humidity}
+                                    />
+                                    <Condition 
+                                        condition={location.condition}
+                                    />
+                            </WeatherItem>
+                    })}
+                </div>
+            )  
     );
 };
     

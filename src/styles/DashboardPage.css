@@ -1,7 +1,7 @@
 .layout {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  justify-items: center;
+  overflow: hidden;
 }
 
 .sideBar {

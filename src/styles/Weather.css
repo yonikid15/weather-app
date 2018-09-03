@@ -1,20 +1,28 @@
-.weather {
+.weatherLayout {
   align-self: center;
-  background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.35), 
-      rgba(0, 0, 0, 0.35)
-    ),
-    url('../../public/images/building-architecture-historical-tower.jpg') no-repeat center/cover;
-  height: 80%;
-  width: 90%;
-  margin: 0px 20px;
+  justify-self: center;
+  height: 400px;
+  width: 95%;
+  padding: 0;
+  margin: 0;
   border-radius: 10px;
 
-  display: grid;
-  grid-template-columns: repeat( auto-fill, 100px );
-  grid-template-rows: repeat( auto-fill, 100px );
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-content: center;
+  
 }
 
+.noLocation {
+  align-self: center;
+  justify-self: center;
+  font-size: 55px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.icon {
+  padding-bottom: 10px;
+}

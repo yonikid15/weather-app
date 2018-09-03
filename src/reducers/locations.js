@@ -23,6 +23,16 @@ export default ( state = locationsReducerDefaultState, action ) => {
 
         return location;
       });
+    case 'REFRESH_LOCATION':
+      return state.map( location => {
+        if( location.id === action.id ) {
+          return {
+            ...action.location
+          };
+        } else {
+          return location;
+        }
+      });
     default:
       return state;
   };

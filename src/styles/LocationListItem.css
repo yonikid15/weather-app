@@ -24,7 +24,13 @@
     font-size: 13px;
   }
 
+  &__buttons {
+    align-self: start;
+   
+  }
+
   &__btn {
+    display: inline;
     padding: 5px;
     margin-top: -10px;
     border: none;
@@ -32,15 +38,16 @@
     color: white;
     opacity: 0;
     transition: all 0.2s ease-in-out;
-    align-self: start;
   }
+
+
 }
 
 .listItem:hover {
   background-color: rgba(96, 125, 139, 0.193);
 }
 
-.listItem:hover > .listItem__btn {
+.listItem:hover .listItem__btn {
   opacity: 1;
   background-color: rgba(96, 125, 139, 0.003);
 }
