@@ -1,21 +1,13 @@
 # Weather App
 
-1. Build Components
-
-- [ ] LocationForm
-- [ ] LocationList
-- [ ] LocationListItem
-- [ ] Weather
-- [ ] Temperature
-- [ ] Humidity
-- [ ] Conditions
-- [ ] DashboardPage
-- [ ] Header
-- [ ] Footer
-
 # TO DO
 
-- Add data to cache ( see redux-localStorage );
+- remove duplicates from locations array, if location already exists then dont add
+
 - Find photos of cities ( hopefully ), or settle for images of weather 
   - maybe a gradiant background color ( red = hot, blue = cold )?
-- Add Flag images
+  - google place photos might be free
+
+- Add a map! When page opens, move logo to top left corner, then open map like an old television ( center zoom? )
+
+- Input field is a search bar ( angolia places? or create my own ?);

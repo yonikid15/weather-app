@@ -4,3 +4,4 @@
 
 # ignore root parcel bundler folder "/dist"  
 /dist
+.cache

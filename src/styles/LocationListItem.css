@@ -22,6 +22,7 @@
 
   &__country {
     font-size: 13px;
+    letter-spacing: 1px;
   }
 
   &__buttons {

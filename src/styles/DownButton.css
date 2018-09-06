@@ -10,6 +10,7 @@
   top: 100%;
   transform: translateY(-6vw);
   padding-bottom: 44%;
+  transition: all 0.4s;
 
   &__icon {
     color: #607D8B;

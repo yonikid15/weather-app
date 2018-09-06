@@ -1,15 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startAddLocation } from '../actions/locations';
+import { startAddLocation, startActivateLocation } from '../actions/locations';
 import LocationList from './LocationList';
 import LocationForm from './LocationForm';
 import Weather from './Weather';
+import { shake } from '../tools/animations';
 import styles from '../styles/DashboardPage.css';
 
-export const DashboardPage = ( { startAddLocation } ) => {
+export const DashboardPage = ( { startAddLocation, startActivateLocation, locations } ) => {
     
-    const onSubmit = ( location ) => {
-        startAddLocation( location );
+    const onSubmit = ( newLocation ) => {
+        const ifExists = locations.find( oldLocation => oldLocation.city === newLocation.city );
+
+        shake();
+
+        !ifExists ? startAddLocation( newLocation ) : startActivateLocation( ifExists.id );
     }
 
     return (
@@ -25,8 +30,13 @@ export const DashboardPage = ( { startAddLocation } ) => {
     );
 };
 
+const mapStateToProps = ( state ) => ({
+    locations: state.locations
+});
+
 const mapDispatchToProps = ( dispatch ) => ({
-    startAddLocation: ( location ) => dispatch( startAddLocation( location ) )
+    startAddLocation: ( location ) => dispatch( startAddLocation( location ) ),
+    startActivateLocation: ( id ) => dispatch( startActivateLocation( id ) )
 })
 
-export default connect( undefined, mapDispatchToProps )( DashboardPage );
+export default connect( mapStateToProps, mapDispatchToProps )( DashboardPage );

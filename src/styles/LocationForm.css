@@ -1,5 +1,9 @@
-.form {
+.formLayout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
 
+.form {
   border-bottom: 1px solid #607D8B;
   padding: 10px;
 
@@ -18,12 +22,31 @@
     color: white;
   }
 
-  &__btn {
+  &__addBtn {
     border: none;
     background-color: #1c465a;
     color: white;
     padding: 10px;
     margin: 0 10px 10px 0;
     border-radius: 2px;
+    transition: all 0.4s;
+  }
+
+  &__addBtn:hover {
+    background-color: #327fa3;
+  }
+
+  &__removeBtn {
+    border: none;
+    background-color: #941010;
+    color: white;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    border-radius: 2px;
+    transition: all 0.4s;
+  }
+
+  &__removeBtn:hover {
+    background-color: #c91515;
   }
 }

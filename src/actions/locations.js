@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 
 // ADD_LOCATION
-
 export const addLocation = ( location ) => ({
   type: 'ADD_LOCATION',
   location
@@ -23,7 +22,6 @@ export const startAddLocation = ( location = {} ) => {
 
         // Get data from Response
         return apiData.then( data => {
-          console.log( data );
           const locationData = {
               id: uuid(),
               temperature: data.main.temp,
@@ -44,7 +42,6 @@ export const startAddLocation = ( location = {} ) => {
 };
 
 // REMOVE_LOCATION
-
 export const removeLocation = ( id ) => ({
   type: 'REMOVE_LOCATION',
   id
@@ -56,8 +53,12 @@ export const startRemoveLocation = ( id ) => {
   }
 };
 
-// ACTIVATE_LOCATION
+// REMOVE_ALL_LOCATIONS
+export const removeAllLocations = () => ({
+  type: 'REMOVE_ALL_LOCATIONS',
+});
 
+// ACTIVATE_LOCATION
 export const activateLocation = ( id ) => ({
   type: 'ACTIVATE_LOCATION',
   id
@@ -70,7 +71,6 @@ export const startActivateLocation = ( id ) => {
 };
 
 // REFRESH_LOCATION
-
 export const refreshLocation = ( id, location ) => ({
   type: 'REFRESH_LOCATION',
   id,

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { removeAllLocations } from '../actions/locations';
 import styles from '../styles/LocationForm.css';
 
-class Form extends React.Component {
+export class Form extends React.Component {
     state = {
         city: undefined,
         country: undefined
@@ -30,10 +32,16 @@ class Form extends React.Component {
         this.props.onSubmit( location );
     };
 
+    removeAll = (e) => {
+        e.preventDefault();
+        console.log( e.target );
+        this.props.removeAllLocations();
+    }
+
 
     render() {
         return (
-            <form className={styles.form} onSubmit={this.onSubmit}>
+            <form className={styles.form} onSubmit={ this.onSubmit }>
                 <input 
                     className={styles.form__input}
                     type="text" 
@@ -48,11 +56,15 @@ class Form extends React.Component {
                     placeholder="Country..."
                     onChange={this.handleCountry}
                 />
-                <button className={styles.form__btn}>Add Location</button>
+                <button className={styles.form__addBtn}>Add Location</button>
+                <button onClick={ this.removeAll } className={styles.form__removeBtn}>Remove All</button>
             </form>
         );
-    };
-    
+    };  
 };
 
-export default Form;
+const mapDispatchToProps = ( dispatch ) => ({
+    removeAllLocations: () => { dispatch( removeAllLocations() ) }
+});
+
+export default connect( undefined, mapDispatchToProps )( Form );
