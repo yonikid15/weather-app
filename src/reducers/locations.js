@@ -1,6 +1,41 @@
 // Locations Reducer
+import uuid from 'uuid';
 
-const locationsReducerDefaultState = [];
+const toronto = {
+  id: uuid(),
+  temperature: 303,
+  city: 'Toronto',
+  country: 'Canada',
+  humidity: 99,
+  condition: 'Sunny',
+  active: true
+};
+
+const ottawa = {
+  id: uuid(),
+  temperature: 295,
+  city: 'Ottawa',
+  country: 'Canada',
+  humidity: 97,
+  condition: 'Cloudy with a chance of meatballs',
+  active: false
+};
+
+const montreal = {
+  id: uuid(),
+  temperature: 285,
+  city: 'Montreal',
+  country: 'Canada',
+  humidity: 90,
+  condition: 'Thunder Showers',
+  active: false
+};
+
+const locationsReducerDefaultState = [
+  toronto,
+  ottawa,
+  montreal
+];
 
 export default ( state = locationsReducerDefaultState, action ) => {
   switch ( action.type ) {

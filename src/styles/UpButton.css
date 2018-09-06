@@ -15,3 +15,13 @@
     font-size: 40px;
   }
 }
+
+.upBtn:hover {
+  background-color: rgba(96, 125, 139, 0.1);
+}
+
+.upBtn:focus {
+  outline: 0;
+  border-color: #00ccff;
+  box-shadow: 0 0 0 1px #00ccff;
+}

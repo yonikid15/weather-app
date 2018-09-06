@@ -26,7 +26,6 @@
 
   &__buttons {
     align-self: start;
-   
   }
 
   &__btn {
@@ -39,8 +38,6 @@
     opacity: 0;
     transition: all 0.2s ease-in-out;
   }
-
-
 }
 
 .listItem:hover {
@@ -52,6 +49,7 @@
   background-color: rgba(96, 125, 139, 0.003);
 }
 
-/* .listItem:last-child {
-  border-bottom: none;
-} */
+.highlight {
+  background-color: rgba(96, 125, 139, 0.503);
+}
+

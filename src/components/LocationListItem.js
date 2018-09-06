@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startRemoveLocation, startActivateLocation, startRefreshLocation } from '../actions/locations';
+import { startSlideAnimation } from '../tools/animations';
 import styles from '../styles/LocationListItem.css';
 
 export class LocationsListItem extends React.Component {
@@ -10,7 +11,8 @@ export class LocationsListItem extends React.Component {
       - First activate either the location previous in the array, if first in the list then activate the next location.
       - Then remove the location from the list
   */
-  remove = () => {
+  remove = ( event ) => {
+    event.stopPropagation();
     const { prev, next, id, active } = this.props;
 
     if( active ) {
@@ -31,6 +33,7 @@ export class LocationsListItem extends React.Component {
     Activate Location when user clicks on Component.
   */
   activate = () => {
+    startSlideAnimation( this.props );
     this.props.startActivateLocation( this.props.id );
   }
 
@@ -47,9 +50,9 @@ export class LocationsListItem extends React.Component {
   }
 
   render() {
-    const { city, country } = this.props;
+    const { city, country, active } = this.props;
     return (
-      <li onClick={ this.activate } className={ styles.listItem }>
+      <li onClick={ this.activate } className={`${ styles.listItem } ${ active ? styles.highlight : undefined }`}>
         <img className={ styles.listItem__img } src="https://via.placeholder.com/60x60"/>
         <div className={ styles.listItem__titles }>
           <h4 className={ styles.listItem__city }>{ city }</h4>
@@ -64,10 +67,14 @@ export class LocationsListItem extends React.Component {
   };
 };
 
+const mapStateToProps = ( state ) => ({
+  locations: state.locations
+});
+
 const mapDispatchToProps = ( dispatch ) => ({
   startRemoveLocation: ( id ) => dispatch( startRemoveLocation( id ) ),
   startActivateLocation: ( id ) => dispatch( startActivateLocation( id ) ),
   startRefreshLocation: ( id, location ) => dispatch( startRefreshLocation( id, location ) )
 });
 
-export default connect( undefined, mapDispatchToProps )( LocationsListItem );
+export default connect( mapStateToProps, mapDispatchToProps )( LocationsListItem );

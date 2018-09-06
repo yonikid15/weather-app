@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import WeatherItem from './WeatherItem';
-import Place from './Place';
-import Temperature from './Temperature';
-import Humidity from './Humidity';
-import Condition from './Condition';
 import styles from '../styles/Weather.css';
 import wIcons from '../styles/weather-icons.min.css';
 
 export const Weather = ( { locations } ) => {
 
-    const active = locations.find( location => location.active === true );
+    let locIndex;
+    const active = locations.find( ( location, index ) => {
+        locIndex = index;
+        return location.active === true;
+    });
+
+    const prev = locations[ locIndex - 1 ];
+    const next = locations[ locIndex + 1 ];
+
 
     return (
         locations.length === 0 ?
@@ -25,23 +29,19 @@ export const Weather = ( { locations } ) => {
 
             (
                 <div className={ styles.weatherLayout }>
-                    { locations.map( location => {
-                        return <WeatherItem>
-                                    <Place 
-                                        city={location.city} 
-                                        country={location.country} 
-                                    />
-                                    <Temperature 
-                                        temperature={location.temperature}
-                                    />
-                                    <Humidity 
-                                        humidity={location.humidity}
-                                    />
-                                    <Condition 
-                                        condition={location.condition}
-                                    />
-                            </WeatherItem>
-                    })}
+                    {/* { prev ? 
+                        <WeatherItem prev={ true } { ...prev } /> 
+                        : 
+                        undefined 
+                    } */}
+
+                    <WeatherItem active={ true } { ...active } />
+
+                    {/* { next ? 
+                        <WeatherItem next={ true } { ...next } /> 
+                        : 
+                        undefined 
+                    } */}
                 </div>
             )  
     );

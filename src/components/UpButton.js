@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startActivateLocation } from '../actions/locations';
+import { startSlideAnimation } from '../tools/animations';
 import styles from '../styles/UpButton.css';
 
 export const UpButton = ( { locations, startActivateLocation } ) => {
@@ -8,6 +9,11 @@ export const UpButton = ( { locations, startActivateLocation } ) => {
   const activate = () => { 
     locations.map( ( location, index ) => {
       if( location.active && locations[ index - 1 ] ) {
+        startSlideAnimation({ 
+            locations, 
+            active: false, 
+            id: locations[ index - 1 ].id
+        });
         startActivateLocation( locations[ index - 1 ].id );
       }
     })  

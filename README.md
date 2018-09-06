@@ -15,5 +15,7 @@
 
 # TO DO
 
-- Finish cases for activating and deactivating locations.
-- Then you can create the weather component. The component that is active will be the one shown on the screen.
+- Add data to cache ( see redux-localStorage );
+- Find photos of cities ( hopefully ), or settle for images of weather 
+  - maybe a gradiant background color ( red = hot, blue = cold )?
+- Add Flag images

@@ -14,6 +14,7 @@
   grid-template-rows: repeat( auto-fill, 100px );
   justify-content: center;
   align-content: center;
+  /* transition: all 1s ease-in-out; */
 }
 
 .weatherItem:not(:first-child) {
