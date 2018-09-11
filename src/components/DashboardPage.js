@@ -7,20 +7,21 @@ import Weather from './Weather';
 import { shake } from '../tools/animations';
 import styles from '../styles/DashboardPage.css';
 
-export const DashboardPage = ( { startAddLocation, startActivateLocation, locations } ) => {
+export const DashboardPage = ( { startAddLocation, startActivateLocation } ) => {
     
-    const onSubmit = ( newLocation ) => {
-        const ifExists = locations.find( oldLocation => oldLocation.city === newLocation.city );
-
-        shake();
-
-        !ifExists ? startAddLocation( newLocation ) : startActivateLocation( ifExists.id );
+    const onSubmit = ( location, ifExists ) => {
+        if( !ifExists ) {
+            startAddLocation( location );
+        } else {
+            startActivateLocation( ifExists.id );
+            shake();
+        }
     }
 
     return (
         <section className={ styles.layout }>
             {/* Side Content */}
-            <div className={styles.sideBar}>
+            <div id="side-bar" className={styles.sideBar}>
                 <LocationForm onSubmit={onSubmit} />
                 <LocationList />
             </div>

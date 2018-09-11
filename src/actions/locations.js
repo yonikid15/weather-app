@@ -1,9 +1,16 @@
 import uuid from 'uuid';
+import { countries } from 'country-data';
 
 // ADD_LOCATION
 export const addLocation = ( location ) => ({
   type: 'ADD_LOCATION',
   location
+});
+
+// ERROR_ADD_LOCATION
+export const errorAddLocation = ( message ) => ({
+  type: 'ERROR_ADD_LOCATION',
+  message
 });
 
 export const startAddLocation = ( location = {} ) => {
@@ -23,7 +30,7 @@ export const startAddLocation = ( location = {} ) => {
         // Get data from Response
         return apiData.then( data => {
           const locationData = {
-              id: uuid(),
+              id: data.id,
               temperature: data.main.temp,
               city: data.name,
               country: data.sys.country,
@@ -36,7 +43,7 @@ export const startAddLocation = ( location = {} ) => {
         });
 
       }).catch( err => {
-        console.log( err );
+          dispatch( errorAddLocation( err.message ) );
       });
   };
 };

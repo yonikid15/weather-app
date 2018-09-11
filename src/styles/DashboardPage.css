@@ -1,7 +1,8 @@
 .layout {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: auto 4fr;
   overflow: hidden;
+  height: 100%;
 }
 
 .sideBar {
@@ -9,4 +10,5 @@
   grid-template-rows: auto 1fr;
   width: 100%;
   border-right: 1px solid #607D8B;
+  overflow-y: hidden;
 }

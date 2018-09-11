@@ -15,7 +15,7 @@ export const startSlideAnimation = ( props ) => {
       }
     })
   } else {
-    shake();
+    // shake();
   }
 
   if( newActiveIndex > activeIndex ) {
@@ -42,8 +42,15 @@ export const enterFromTop = () => {
 
 export const shake = () => {
   const active = document.querySelector(`#activeItem`);
-  active.classList.add( animations.shake );
-  active.addEventListener('animationend', listener, false);
+  if( active ) {
+    active.classList.add( animations.shake );
+    active.addEventListener('animationend', listener, false);
+  }
+}
+
+export const inputAnimation = ( e ) => {
+  const sideBar = document.querySelector(`#location-input`);
+  sideBar.blur();
 }
   
 export const listener = ( event ) => {
@@ -58,3 +65,5 @@ export const listener = ( event ) => {
       break;
   }
 }
+
+

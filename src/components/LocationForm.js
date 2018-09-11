@@ -1,35 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeAllLocations } from '../actions/locations';
+import { inputAnimation } from '../tools/animations';
+import places from 'places.js';
 import styles from '../styles/LocationForm.css';
 
 export class Form extends React.Component {
-    state = {
-        city: undefined,
-        country: undefined
+    constructor( props ) {
+        super( props );
+        
+        this.state = {
+            placesAutocomplete: undefined,
+            city: undefined,
+            country: undefined
+        };
     };
 
-    handleCity = (e) => {
-        const city = e.target.value;
+    componentDidMount() {
+        this.setState({
+            placesAutocomplete: places({
+                container: document.querySelector('#location-input'),
+                type: 'city',
+                aroundLatLngViaIP: false
+            })
+        }, this.setupAlgolia );
+    };
 
-        this.setState({ city }, this.handleOnChange);
-    }
+    setupAlgolia = () => {
+        this.state.placesAutocomplete.on( 'change', this.onChange.bind( this ));
+    };
 
-    handleCountry = (e) => {
-        const country = e.target.value;
+    onChange = (e) => {
+        this.setState({
+            city: e.suggestion.name,
+            country: e.suggestion.countryCode.toUpperCase()
+        }, () => { this.onSubmit() });
 
-        this.setState({ country }, this.handleOnChange);
-    }
+        this.state.placesAutocomplete.setVal('');
+    };
     
-    onSubmit = (e) => {
-        e.preventDefault();
+    onSubmit = ( e ) => {
+        e ? e.preventDefault() : undefined;
+ 
+        if( this.state.city && this.state.country ) {
+            
+            const ifExists = this.props.locations.find( oldLocation =>
+                oldLocation.city === this.state.city && 
+                oldLocation.country === this.state.country
+            );
 
-        const location = {
-            city: this.state.city,
-            country: this.state.country
-        };
-        
-        this.props.onSubmit( location );
+            if ( !ifExists ) {
+                const location = {
+                    city: this.state.city,
+                    country: this.state.country
+                };
+                
+                this.props.onSubmit( location, ifExists );
+                
+            } else {
+                this.props.onSubmit( location, ifExists );
+            }  
+        }
+
+        inputAnimation();
     };
 
     removeAll = (e) => {
@@ -38,33 +71,32 @@ export class Form extends React.Component {
         this.props.removeAllLocations();
     }
 
-
     render() {
         return (
             <form className={styles.form} onSubmit={ this.onSubmit }>
-                <input 
-                    className={styles.form__input}
+                <input
+                    id="location-input" 
+                    className={ styles['ap-input'] }
                     type="text" 
                     name="city" 
-                    placeholder="City..."
-                    onChange={this.handleCity}
+                    placeholder="Enter a city..."
                 />
-                <input
-                    className={styles.form__input}
-                    type="text" 
-                    name="country" 
-                    placeholder="Country..."
-                    onChange={this.handleCountry}
-                />
-                <button className={styles.form__addBtn}>Add Location</button>
-                <button onClick={ this.removeAll } className={styles.form__removeBtn}>Remove All</button>
+
+                <div className={ styles.form__buttons }>
+                    <button className={styles.form__addBtn}>Add Location</button>
+                    <button onClick={ this.removeAll } className={styles.form__removeBtn}>Remove All</button>
+                </div>
             </form>
         );
     };  
 };
 
+const mapStateToProps = ( state ) => ({
+    locations: state.locations
+});
+
 const mapDispatchToProps = ( dispatch ) => ({
     removeAllLocations: () => { dispatch( removeAllLocations() ) }
 });
 
-export default connect( undefined, mapDispatchToProps )( Form );
+export default connect( mapStateToProps, mapDispatchToProps )( Form );

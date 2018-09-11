@@ -4,6 +4,7 @@ import Temperature from './Temperature';
 import Humidity from './Humidity';
 import Condition from './Condition';
 import styles from '../styles/WeatherItem.css';
+import backgroundImage from '../../public/images/nightsky1.jpeg';
 
 const WeatherItem = ({ 
   id, 
@@ -36,7 +37,8 @@ const WeatherItem = ({
   return (
     <div
       id={ setCssId() }
-      className={ `${ styles.weatherItem }` }  
+      className={ `${ styles.weatherItem }` } 
+      style={{ 'backgroundImage' : `url(${ backgroundImage })` }}
       data-id={ id }
     >
       <Place 
@@ -62,3 +64,6 @@ export default WeatherItem;
 //       data-next={ next ? id : undefined }
 //       data-prev={ prev ? id : undefined }
 // set id to prev or next or active then animate from there
+
+
+// style={{ 'backgroundImage' : 'linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(../../public/images/building-architecture-historical-tower.jpg)'}}

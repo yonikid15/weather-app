@@ -1,22 +1,16 @@
 .weatherItem {
-  background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.35), 
-      rgba(0, 0, 0, 0.35)
-    ),
-    url('../../public/images/building-architecture-historical-tower.jpg') no-repeat center/cover;
-  padding: 20px 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image:linear-gradient(rgba(179, 31, 31, 0.35), rgba(173, 28, 28, 0.35));
+  padding: 20px;
   margin: 0px 20px;
   border-radius: 10px;
+  height: 425px;
 
   display: grid;
   grid-template-columns: repeat( auto-fill, 100px );
   grid-template-rows: repeat( auto-fill, 100px );
   justify-content: center;
   align-content: center;
-  /* transition: all 1s ease-in-out; */
-}
-
-.weatherItem:not(:first-child) {
-  margin-top: 300px;
 }

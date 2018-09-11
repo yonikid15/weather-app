@@ -1,25 +1,12 @@
-.formLayout {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
 .form {
   border-bottom: 1px solid #607D8B;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
 
-  &__input {
-    display: block;
-    border: none;
-    width: 100%;
-    background-color: rgba(96, 125, 139, 0.141);
-    padding: 10px;
-    margin: 10px 0;
-    color: white;
-    border-radius: 2px;
-  }
-
-  &__input::placeholder {
-    color: white;
+  &__buttons {
+    display: flex;
   }
 
   &__addBtn {
@@ -27,9 +14,10 @@
     background-color: #1c465a;
     color: white;
     padding: 10px;
-    margin: 0 10px 10px 0;
     border-radius: 2px;
     transition: all 0.4s;
+    margin-right: 10px;
+
   }
 
   &__addBtn:hover {
@@ -41,7 +29,6 @@
     background-color: #941010;
     color: white;
     padding: 10px;
-    margin: 0 10px 10px 0;
     border-radius: 2px;
     transition: all 0.4s;
   }
@@ -49,4 +36,22 @@
   &__removeBtn:hover {
     background-color: #c91515;
   }
+}
+
+.ap-input {
+  background-color: rgba(96, 125, 139, 0.141);
+  color: lightgrey;
+  border: none;
+}
+
+.ap-input::placeholder {
+  color: lightgrey;
+}
+
+.ap-input {
+  transition: padding .2s ease-in;
+}
+
+.ap-input:focus {
+  padding-right: 150px;
 }

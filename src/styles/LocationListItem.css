@@ -5,6 +5,7 @@
   align-items: center;
   transition: all 0.2s ease-in-out;
   padding: 10px 0;
+  color: white;
 
   &__img {
     margin-left: 10px;

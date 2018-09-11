@@ -2,6 +2,7 @@
 
   border-bottom: 1px solid #607D8B;
   padding: 5px 10px;
+  color: white;
   
   &__content {
     display: flex;

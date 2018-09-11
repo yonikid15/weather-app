@@ -10,6 +10,8 @@ export default ( state = locationsReducerDefaultState, action ) => {
         ...deactivate( state ),
         action.location
       ];
+    case 'ERROR_ADD_LOCATION': 
+      return state;
     case 'REMOVE_LOCATION':
       return state.filter( location => location.id !== action.id );
     case 'REMOVE_ALL_LOCATIONS':

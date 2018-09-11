@@ -1,10 +1,11 @@
 html {
   font-family: 'Lato', sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #121519;
-  color: white;
   height: 100vh;
 }
 
@@ -17,4 +18,5 @@ button {
 .mainLayout {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }

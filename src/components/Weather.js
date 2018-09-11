@@ -28,7 +28,7 @@ export const Weather = ( { locations } ) => {
             :
 
             (
-                <div className={ styles.weatherLayout }>
+                <div id="weather" className={ styles.weatherLayout }>
                     {/* { prev ? 
                         <WeatherItem prev={ true } { ...prev } /> 
                         : 
