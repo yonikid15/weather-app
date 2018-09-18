@@ -1,22 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startActivateLocation } from '../actions/locations';
-import { startSlideAnimation } from '../tools/animations';
+import { startSlideAnimation, shake } from '../tools/animations';
 import styles from '../styles/UpButton.css';
 
 export const UpButton = ( { locations, startActivateLocation } ) => {
 
   const activate = () => { 
+    let found = false;
+
     locations.map( ( location, index ) => {
-      if( location.active && locations[ index - 1 ] ) {
+      if( location.active && locations[ index - 1 ] && !found ) {
         startSlideAnimation({ 
             locations, 
             active: false, 
             id: locations[ index - 1 ].id
         });
         startActivateLocation( locations[ index - 1 ].id );
+        found = true;
       }
-    })  
+    })
+    
+    if( !found ) {
+      shake();
+    }
+    
   };
 
   return (

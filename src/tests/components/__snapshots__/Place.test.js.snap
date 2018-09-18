@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Place correctly 1`] = `
+<div
+  className="place"
+>
+  <h3
+    className="place__city"
+  >
+    <span>
+      Ottawa
+    </span>
+  </h3>
+  <h5
+    className="place__country"
+  >
+    Canada
+  </h5>
+</div>
+`;

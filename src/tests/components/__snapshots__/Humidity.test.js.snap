@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Humidity correctly 1`] = `
+<div
+  className="humidity"
+>
+  <h3
+    className="humidity__title"
+  >
+    <i
+      className="fas fa-tint humidity__icon"
+    />
+    <span />
+  </h3>
+</div>
+`;

@@ -8,3 +8,9 @@
 
 - Add a map! When page opens, move logo to top left corner, then open map like an old television ( center zoom? )
 
+- Testing:
+
+  - LocationForm
+  - LocationList
+  - NotFoundPage
+  - Weather

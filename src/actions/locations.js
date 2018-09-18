@@ -20,31 +20,12 @@ export const startAddLocation = ( location = {} ) => {
   } = location;
 
   return ( dispatch ) => {
-      const apiCall = fetch(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.OPEN_MAP_WEATHER_API_KEY}`
-      ).then( res => {
-
-        // Status: 200 OK
-        const apiData = res.json();
-
-        // Get data from Response
-        return apiData.then( data => {
-          const locationData = {
-              id: data.id,
-              temperature: data.main.temp,
-              city: data.name,
-              country: data.sys.country,
-              humidity: data.main.humidity,
-              condition: data.weather[0].description,
-              active: true
-          };
-
-          dispatch( addLocation( locationData ) );  
-        });
-
-      }).catch( err => {
-          dispatch( errorAddLocation( err.message ) );
-      });
+    return fetchData( 
+      location, 
+      dispatch, 
+      addLocation, 
+      errorAddLocation 
+    );
   };
 };
 
@@ -78,44 +59,50 @@ export const startActivateLocation = ( id ) => {
 };
 
 // REFRESH_LOCATION
-export const refreshLocation = ( id, location ) => ({
+export const refreshLocation = ( location ) => ({
   type: 'REFRESH_LOCATION',
-  id,
   location
 });
 
-export const startRefreshLocation = ( id, location = {} ) => {
+export const errorRefreshLocation = ( message ) => ({
+  type: 'ERROR_REFRESH_LOCATION',
+  message
+});
+
+export const startRefreshLocation = ( location = {} ) => {
+  return ( dispatch ) => {
+    return fetchData( 
+      location, 
+      dispatch, 
+      refreshLocation,
+      errorRefreshLocation 
+    );
+  };
+};
+
+const fetchData = (location, dispatch, success, error) => {
   const { 
     city, 
     country 
   } = location;
 
-  return ( dispatch ) => {
-      const apiCall = fetch(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.OPEN_MAP_WEATHER_API_KEY}`
-      ).then( res => {
-
-        // Status: 200 OK
-        const apiData = res.json();
-
-        // Get data from Response
-        return apiData.then( data => {
-          console.log( data );
-          const locationData = {
-              id: id,
-              temperature: data.main.temp,
-              city: data.name,
-              country: data.sys.country,
-              humidity: data.main.humidity,
-              condition: data.weather[0].description,
-              active: true
-          };
-
-          dispatch( refreshLocation( id, locationData ) );  
-        });
-
-      }).catch( err => {
-        console.log( err );
-      });
-  };
-};
+  return fetch(
+    `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.OPEN_MAP_WEATHER_API_KEY}`
+  ).then( res =>  res.json() )
+  .then( data => {
+      const locationData = {
+          id: data.id,
+          temperature: data.main.temp,
+          city: data.name,
+          country: data.sys.country,
+          humidity: data.main.humidity,
+          condition: data.weather[0].description,
+          active: true
+      }
+      dispatch( success( locationData ) );
+      dispatch( activateLocation( locationData.id ) );
+  })
+  .catch( err => {
+      dispatch( error( err.message ) );
+  });
+}

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render WeatherItem correctly 1`] = `
+<div
+  className="weatherItem"
+  data-id={0}
+  id="activeItem"
+  style={
+    Object {
+      "backgroundImage": "url([object Object])",
+    }
+  }
+>
+  <Place
+    city="Ottawa"
+    country="CA"
+  />
+  <Temperature
+    temperature={300}
+  />
+  <Humidity
+    humidity={50}
+  />
+  <Condition
+    condition="clear skies"
+  />
+</div>
+`;

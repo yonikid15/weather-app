@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startRemoveLocation, startActivateLocation, startRefreshLocation } from '../actions/locations';
-import { startSlideAnimation } from '../tools/animations';
+import { startSlideAnimation, enterFromTop } from '../tools/animations';
 import { countries } from 'country-data';
 import styles from '../styles/LocationListItem.css';
 
@@ -47,7 +47,10 @@ export class LocationsListItem extends React.Component {
       country: this.props.country
     };
 
-    this.props.startRefreshLocation( this.props.id, location );
+    this.props.startRefreshLocation( location );
+    if( this.props.active ) {
+      enterFromTop();
+    }
   }
 
   render() {
@@ -83,7 +86,7 @@ const mapStateToProps = ( state ) => ({
 const mapDispatchToProps = ( dispatch ) => ({
   startRemoveLocation: ( id ) => dispatch( startRemoveLocation( id ) ),
   startActivateLocation: ( id ) => dispatch( startActivateLocation( id ) ),
-  startRefreshLocation: ( id, location ) => dispatch( startRefreshLocation( id, location ) )
+  startRefreshLocation: ( id, location ) => dispatch( startRefreshLocation( location ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( LocationsListItem );

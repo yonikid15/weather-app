@@ -7,7 +7,7 @@ export default ( state = locationsReducerDefaultState, action ) => {
   switch ( action.type ) {
     case 'ADD_LOCATION':
       return [
-        ...deactivate( state ),
+        ...state,
         action.location
       ];
     case 'ERROR_ADD_LOCATION': 
@@ -30,7 +30,7 @@ export default ( state = locationsReducerDefaultState, action ) => {
       });
     case 'REFRESH_LOCATION':
       return state.map( location => {
-        if( location.id === action.id ) {
+        if( location.id === action.location.id ) {
           return {
             ...action.location
           };
@@ -38,26 +38,9 @@ export default ( state = locationsReducerDefaultState, action ) => {
           return location;
         }
       });
+    case 'ERROR_REFRESH_LOCATION': 
+    return state;
     default:
       return state;
   };
 };
-
-
-const deactivate = ( state ) => {
-  return state.map( location => {
-    if( location.active === true ) {
-      location.active = false;
-    }
-    return location;
-  });
-};
-
-const activate = ( state ) => {
-  return state.map( location => {
-    if( location.active === true ) {
-      location.active = false;
-    }
-    return location;
-  });
-}

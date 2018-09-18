@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startActivateLocation } from '../actions/locations';
-import { startSlideAnimation } from '../tools/animations';
+import { startSlideAnimation, shake } from '../tools/animations';
 import styles from '../styles/DownButton.css';
 
 export const DownButton = ( { locations, startActivateLocation } ) => {
@@ -19,7 +19,11 @@ export const DownButton = ( { locations, startActivateLocation } ) => {
         startActivateLocation( locations[ index + 1 ].id );
         found = true;
       }
-    })  
+    })
+
+    if( !found ) {
+      shake();
+    }
   };
 
   return (

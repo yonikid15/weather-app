@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render DownButton Correctly 1`] = `
+<button
+  className="downBtn"
+  onClick={[Function]}
+>
+  <i
+    className="fas fa-caret-down downBtn__icon"
+  />
+</button>
+`;

@@ -17,26 +17,9 @@ const WeatherItem = ({
   prev, 
   active 
 }) => {
-
-  const positionStyle = `${ next ? styles.next : "" }${ prev ? styles.prev : "" }${ active ? styles.active : "" }`;
-
-  const setCssId = () => {
-      let id =  undefined;
-
-      if( active ) {
-        return id = "activeItem";
-      } else if( prev ) {
-        return id = "prevItem";
-      } else if( next ) {
-        return id = "nextItem";
-      } else {
-        return id;
-      }
-  }
-
   return (
     <div
-      id={ setCssId() }
+      id={'activeItem'}
       className={ `${ styles.weatherItem }` } 
       style={{ 'backgroundImage' : `url(${ backgroundImage })` }}
       data-id={ id }
@@ -60,10 +43,3 @@ const WeatherItem = ({
 
 export default WeatherItem;
 
-// data-active={ active ? id : undefined }
-//       data-next={ next ? id : undefined }
-//       data-prev={ prev ? id : undefined }
-// set id to prev or next or active then animate from there
-
-
-// style={{ 'backgroundImage' : 'linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(../../public/images/building-architecture-historical-tower.jpg)'}}

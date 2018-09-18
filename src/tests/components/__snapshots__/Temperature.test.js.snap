@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Temperature correctly 1`] = `
+<div
+  className="temperature"
+>
+  <h3
+    className="temperature__title"
+  >
+    <i
+      className="fas fa-thermometer-half temperature__icon"
+    />
+    <span>
+      26
+      °C
+    </span>
+  </h3>
+</div>
+`;

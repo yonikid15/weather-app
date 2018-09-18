@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Condition correctly 1`] = `
+<div
+  className="condition"
+>
+  <h3
+    className="condition__title"
+  >
+    <i
+      className="wi wi-cloudy condition__icon"
+    />
+    <span>
+      cloudy
+    </span>
+  </h3>
+</div>
+`;
